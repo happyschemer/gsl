@@ -1,25 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grocery Shopping List</title>
-    <!--<style>* {padding: 0; margin: 0}</style>-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/gsl.css" rel="stylesheet">
+
 </head>
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="web-jsdeps.js" charset="UTF-8"></script>
     <script type="text/javascript" src="web-fastopt.js" charset="UTF-8"></script>
     <script type="text/javascript" src="web-launcher.js" charset="UTF-8"></script>
-    <div id="list">
-        <div class="caption">My Grocery Shopping List</div>
-        <input id="add" type="button" value="Add">
-        <ol id="items"></ol>
+
+    <div id="list" class="container">
+        <div class="page-header"><h1>My Grocery Shopping List</h1></div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12"><table class="table">
+                <tbody id="items"></tbody>
+            </table></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12 text-center footer navbar-fixed-bottom">
+                <input id="add" class="btn btn-primary btn-circle" type="button" value="&#xff0b;"/>
+            </div>
+        </div>
     </div>
-    <div id="one" hidden>
-        Title: <input id="title" type="text" name="title">
-        Notes: <input id="notes" type="text" name="notes">
-        <input id="save" type="button" value="Save" disabled>
-        <input id="remove" type="button" value="Remove">
-        <input id="cancel" type="button" value="Cancel">
+
+    <div id="one" class="container" hidden>
+        <div class="page-header"><h1>Fill In Details</h1></div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <label for="title">Title</label>
+                <input id="title" class="form-control" type="text" name="title" placeholder="Buy...">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <label for="notes">Notes</label>
+                <textarea id="notes" class="form-control" rows="3" placeholder="Extra notes..."></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="btn-group col-xs-6 col-xs-offset-6 col-md-6 col-md-offset-6" role="group">
+                <input id="remove" class="btn btn-link" type="button" value="REMOVE">
+                <input id="cancel" class="btn btn-link" type="button" value="CANCEL">
+                <input id="save" class="btn btn-link" type="button" value="OK" disabled>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>

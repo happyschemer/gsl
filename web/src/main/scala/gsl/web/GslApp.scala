@@ -72,10 +72,18 @@ object GslApp extends JSApp {
     shopping.items.foreach { i =>
       $("#items").append(
         s"""
-           |<li>
-           |<span id="${i.title}" class="item">${i.title}</span>
-           |<span id="${i.title}" class="purchase">${if (i.purchased) "[X]" else "[ ]"}</span>
-           |</li>
+           |<tr>
+           |  <td><a href="#">
+           |    <span id="${i.title}" class="item ${if (i.purchased) "text-muted" else "text-primary"}">
+           |      ${i.title}
+           |    </span>
+           |  </a></td>
+           |  <td><a href="#">
+           |    <span id="${i.title}" class="purchase">
+           |      <span class="glyphicon glyphicon-${if (i.purchased) "check" else "unchecked"}" aria-hidden="true"></span>
+           |    </span>
+           |  </a></td>
+           |</tr>
            |""".
           stripMargin
       )
