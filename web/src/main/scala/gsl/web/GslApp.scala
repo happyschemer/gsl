@@ -95,8 +95,17 @@ object GslApp extends JSApp {
     $("#notes").value(editing.flatMap(_.notes).orNull)
   }
 
-  def bindList = shopping.items.foreach { i =>
-    $("#items").append(s"""<li id="${i.title}" class="item">${i.title}</li>""")
+  def bindList: Unit = shopping.items.foreach { i =>
+    $("#items").append(
+      s"""
+         |<li>
+         |<span id="${i.title}" class="item">${i.title}</span>
+         |<span id="${i.title}" class="purchase">${if (i.purchased) "[X]" else "[ ]"}</span>
+         |</li>
+         |""".
+        stripMargin
+    )
+
     $(".item").each { e: Element =>
       $(e).klick {
         editing = shopping.find(e.id)
@@ -104,6 +113,18 @@ object GslApp extends JSApp {
         validate
         $("#remove").show()
         showSingle
+      }
+    }
+
+    $(".purchase").each { e: Element =>
+      $(e).klick {
+        shopping.find(e.id).foreach { it =>
+          Ajax.put(s"http://$host/$list/$item/${it.title}", write(it.togglePurchased)).
+            map(_.as[Shopping]).foreach { s =>
+              shopping = s
+              rebindList
+              showList
+        }}
       }
     }
   }

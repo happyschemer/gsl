@@ -7,7 +7,9 @@ package object protocol {
   }
   sealed trait Msg
 
-  final case class Item(title: String, notes: Option[String] = None, purchased: Boolean = false) extends Msg
+  final case class Item(title: String, notes: Option[String] = None, purchased: Boolean = false) extends Msg {
+    def togglePurchased = copy(purchased = !purchased)
+  }
   final case class Shopping(items: List[Item] = List()) extends Msg {
     def add(item: Item): Shopping = Shopping(items :+ item)
     def find(title: String): Option[Item] = items.find(_.title == title)
@@ -15,9 +17,10 @@ package object protocol {
     def has(title: String): Boolean = titles.contains(title)
     def remove(title: String): Shopping = Shopping(items.filterNot(_.title == title))
     def edit(title: String, item: Item): Shopping = Shopping(items.collect {
-        case i if i.title == title => item
-        case i => i
-      })
+      case i if i.title == title => item
+      case i => i
+    })
+    def togglePurchased(title: String): Shopping = find(title).map(_.togglePurchased).map(edit(title, _)).getOrElse(this)
   }
 
   object Msg {
