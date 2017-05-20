@@ -59,7 +59,7 @@ object GslApp extends JSApp {
     $("#notes").value(editing.flatMap(_.notes).orNull)
 
     $("#list").hide()
-    $("#item").show()
+    $("#one").show()
 
     editing match {
       case Some(_) => $("#remove").show()
@@ -97,7 +97,7 @@ object GslApp extends JSApp {
   }
 
   def showList: Unit = {
-    $("#item").hide()
+    $("#one").hide()
     $("#list").show()
   }
 
