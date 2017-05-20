@@ -42,8 +42,7 @@ lazy val fu = CrossProject(serverProjId, clientProjId, file("."), MyCrossType).
     jsEnv := PhantomJSEnv().value,
     skip in packageJSDependencies := false,
     jsDependencies ++= Seq(
-      RuntimeDOM,
-      ProvidedJS / "jquery-3.2.1.js"
+      RuntimeDOM
     ),
     libraryDependencies ++= Seq(
       "be.doeraene" %%% "scalajs-jquery" % "0.9.1"
