@@ -401,4 +401,6 @@ elif [[ -f "$java_opts_config_home" ]]; then
   addConfigOpts $(loadConfigFile "$java_opts_config_home")
 fi
 
+echo Hello, I am Activator
+
 run "$@"
