@@ -11,6 +11,7 @@ import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
+import com.typesafe.config.ConfigFactory
 import gsl.service.ShoppingActor.Message
 
 object Server {
@@ -61,7 +62,7 @@ object Server {
         getFromResource
       }
 
-    val bindingFuture = Http().bindAndHandle(route, "0.0.0.0", 8080)
+    val bindingFuture = Http().bindAndHandle(route, "0.0.0.0", ConfigFactory.load().getInt("gsl.port"))
 
     while (true) Thread.sleep(60000)
 
