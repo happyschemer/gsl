@@ -14,8 +14,8 @@
 ## Run
 
 1. clone code
-2. change to the root folder (gsl)
-3. bin/activator -Dgsl.port=8080 service/run
-- *note gsl.port is defaulted to 80*
-- *note you might get JAVA not found error, in that case set JAVA_HOME properly*
+2. change path to the root folder (gsl)
+3. bin/activator -Dgsl.port=8080 "project service" run
+- *gsl.port is defaulted to 80 if it is not explicitly set*
+- *you might get JAVA not found error, in that case set JAVA_HOME properly*
 4. open browser, and connect to http://host:port (e.g. http://localhost:8080)
