@@ -40,7 +40,11 @@ object GslApp extends JSApp {
     }
 
     $("#save").klick {
-      val it = Item($("#title").string, Option($("#notes").string).filterNot(_.isEmpty))
+      val it = Item(
+        $("#title").string,
+        Option($("#notes").string).filterNot(_.isEmpty),
+        editing.map(_.purchased).getOrElse(false)
+      )
       editing match {
         case Some(_) => updateOne(it)
         case None => createOne(it)
